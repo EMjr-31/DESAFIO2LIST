@@ -51,8 +51,9 @@ function editar(elemento){
     document.getElementById('btn__guardar').setAttribute("value","Guardar Cambios");
     document.getElementById('btn__subir').classList.add("articulos__filtro");
     document.getElementById('modal__input__codigo').setAttribute("readonly","");
-    $.post('./busqueda.php',{cod:codigo},
+    $.post('/LIS/LABORATORIOS/DESAFIO2/TextilExport/Producto/buscar/'+codigo,
         function(datos, estado){
+            console.log(datos);
             cargarProducto(datos);
             //console.log(estado);
         }
@@ -75,43 +76,46 @@ function eliminar(elemento){
     
     var codigo=((elemento.parentNode).parentNode).getAttribute("id");
     document.getElementById('desc_modal_from').setAttribute("action","eliminar.php");
-    $.post('./busqueda.php',{cod:codigo},
-    function(datos, estado){
-        cargarProducto2(datos);
-        //console.log(estado);
-    }
-    );
+    $.post('/LIS/LABORATORIOS/DESAFIO2/TextilExport/Producto/buscar/'+codigo,
+        function(datos, estado){
+            console.log(datos);
+            cargarProducto2(datos);
+            //console.log(estado);
+        }
+        );
 }
 /*Funcion para mostrar el productos a seleccionar*/
 function cargarProducto(datos){
     /*Convertimos el JSON en un Objeto JS*/
-    let prod=JSON.parse(datos);
+    let prod=JSON.parse(datos)[0];
+    console.log(prod);
     /*cargamos la informacion*/
-    document.getElementById('modal__img').src="img/"+prod["img"];
-    document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo"]);
-    document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre"]);
-    document.getElementById('modal__input__categoria').setAttribute("value",prod["categoria"]);
-    document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion"]);
-    document.getElementById('modal__input__existencia').setAttribute("value",prod["existencias"]);
-    document.getElementById('modal__input__precio').setAttribute("value",prod["precio"]);
+    document.getElementById('modal__img').src="/LIS/LABORATORIOS/DESAFIO2/TextilExport/Vista/assets/img/"+prod['img'];
+    document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo_producto"]);
+    document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre_producto"]);
+    document.getElementById('modal__input__categoria').setAttribute("value",prod["codigo_categoria"]);
+    document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion_producto"]);
+    document.getElementById('modal__input__existencia').setAttribute("value",prod["existencia_producto"]);
+    document.getElementById('modal__input__precio').setAttribute("value",prod["precio_producto"]);
 }
 function cargarProducto2(datos){
     /*Convertimos el JSON en un Objeto JS*/
-    let prod=JSON.parse(datos);
+    console.log('LLEGAMOS');
+    let prod=JSON.parse(datos)[0];
     /*cargamos la informacion*/
-    document.getElementById('modal__img').src="img/"+prod["img"];
-    document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo"]);
-    document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre"]);
-    document.getElementById('modal__input__categoria').setAttribute("value",prod["categoria"]);
-    document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion"]);
-    document.getElementById('modal__input__existencia').setAttribute("value",prod["existencias"]);
-    document.getElementById('modal__input__precio').setAttribute("value",prod["precio"]);
-    document.getElementById('pregunta').innerHTML="Esta seguro de eliminar el poducto \" "+prod["nombre"]+" \"?";
+    document.getElementById('modal__img').src="/LIS/LABORATORIOS/DESAFIO2/TextilExport/Vista/assets/img/"+prod['img'];
+    document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo_producto"]);
+    document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre_producto"]);
+    document.getElementById('modal__input__categoria').setAttribute("value",prod["codigo_categoria"]);
+    document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion_producto"]);
+    document.getElementById('modal__input__existencia').setAttribute("value",prod["existencia_producto"]);
+    document.getElementById('modal__input__precio').setAttribute("value",prod["precio_producto"]);
+    document.getElementById('pregunta').innerHTML="Esta seguro de eliminar el poducto \" "+prod["nombre_producto"]+" \"?";
 }
 
 /* Cargar imagen*/
 function imgDefecto(){
-    document.getElementById('modal__img').src="img/subir_img.jpg";
+    document.getElementById('modal__img').src="/LIS/LABORATORIOS/DESAFIO2/TextilExport/Vista/assets/img/subir_img.jpg";
 }
 
 /*Funcion para cerrar la cerrar la ventana moval y evitar el recargar la pagina*/

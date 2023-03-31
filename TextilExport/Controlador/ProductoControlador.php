@@ -92,4 +92,11 @@ class ProductoControlador extends Controlador{
         $viewBag=array();
         $this->render("compra.php",$viewBag);
     }
+
+    public function  admin(){
+        $viewBag=array();
+        $productos=$this->model->get();
+        $viewBag['productos']=$productos;
+        $this->render("admin.php",$viewBag);
+    }
 }
