@@ -22,8 +22,8 @@ class ProductoModelo extends Modelo{
 
     }
 
-    public function updateEditorial($producto=array()){
-        $query="UPDATE editoriales SET nombre_producto=:nombre_producto, codigo_categoria=:codigo_categoria, precio_producto=:precio_producto,existencia_producto=:existencia_producto,descripcion_producto=:descripcion_producto  WHERE codigo_producto=:codigo_producto";
+    public function updateProducto($producto=array()){
+        $query="UPDATE producto SET nombre_producto=:nombre_producto, codigo_categoria=:codigo_categoria, precio_producto=:precio_producto,existencia_producto=:existencia_producto,descripcion_producto=:descripcion_producto  WHERE codigo_producto=:codigo_producto";
         return $this->setQuery($query,$producto);
 
     }

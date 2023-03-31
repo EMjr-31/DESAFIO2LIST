@@ -91,6 +91,41 @@ class ProductoControlador extends Controlador{
         $viewBag=array();
         $this->render("compra.php",$viewBag);
     }
+    
+    function update($img){
+        if(isset($_POST['btn'])){
+            //agregar
+            $viewbag=array();
+            extract($_POST);
+            $errores=array();
+            $producto=array();
+            $producto['codigo_producto']=$codigo_producto;
+            $producto['nombre_producto']=$nombre_producto;
+            $producto['codigo_categoria']=$codigo_categoria;
+            $producto['precio_producto']=$precio_producto;
+            $producto['existencia_producto']=$existencia_producto;
+            $producto['descripcion_producto']=$descripcion_producto;
+                if(isset($_FILES['file']) || is_null($_FILES['file'])){
+                    $archivo=$_FILES['file'];
+                    $archivo_nombre=$archivo['name'];
+                    $archivo_tipo=$archivo['type'];
+                    $ext= explode('.',$archivo_nombre);
+                    $tipos=array("image/jpeg","image/png","image/jpg");
+                    if(!in_array($archivo_tipo,$tipos)){
+                        $this->model->updateProducto($producto);
+                    }else{
+                        //mover archivo
+                        $nuevo_nombre=trim($_POST['codigo_producto']).'.'.$ext[1];
+                        echo unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/Vista/assets/img/'.$img);
+                        echo move_uploaded_file($archivo['tmp_name'], $_SERVER['DOCUMENT_ROOT'].PATH.'/Vista/assets/img/'.$nuevo_nombre);
+
+                        $this->model->updateProducto($producto);
+                        //header('location:'.PATH.'/Producto/admin');
+                    }
+                }
+                //header('location:'.PATH.'/Producto/admin');
+        }
+    }
 
     public function  admin(){
         $viewBag=array();

@@ -52,6 +52,7 @@
         <div class="modal__contenedor" id="modal__contenedor">
             <div class="modal">
                 <div class="modal_contenedor__img"> 
+                <img src="" alt="prodc" id="modal__img">
                 </div>
                 <form class="desc_modal" action="" method="POST" enctype="multipart/form-data" id="desc_modal_from">
                     <a href="" class="btn__cerrar" id="btn__cerrar" onclick="event.preventDefault();"><span class="material-symbols-outlined">close</span></a>
