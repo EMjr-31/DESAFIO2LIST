@@ -39,14 +39,13 @@ function agregar(){
 }
 /*funcion para editar*/
 function editar(elemento){
-    console.log(elemento);
     var labels= document.querySelectorAll('.label');
     labels.forEach(function(label){
         label.classList.remove("articulos__filtro");
     });
     document.getElementById('pregunta').innerHTML="";
     var codigo=((elemento.parentNode).parentNode).getAttribute("id");
-    document.getElementById('desc_modal_from').setAttribute("action","editar.php");
+    document.getElementById('desc_modal_from').setAttribute("action","/LIS/LABORATORIOS/DESAFIO2/TextilExport/Categoria/update");
     document.getElementById('btn__guardar').setAttribute("value","Guardar Cambios");
     document.getElementById('modal__input__codigo').setAttribute("readonly","");
     alert(codigo);
@@ -74,7 +73,6 @@ function eliminar(elemento){
     var codigo=((elemento.parentNode).parentNode).getAttribute("id");
     $.post('/LIS/LABORATORIOS/DESAFIO2/TextilExport/Categoria/buscar/'+codigo,
         function(datos, estado){
-            console.log(datos);
             cargarProducto2(datos);
             //console.log(estado);
         }
@@ -84,7 +82,6 @@ function eliminar(elemento){
 function cargarProducto(datos){
     /*Convertimos el JSON en un Objeto JS*/
     let prod=JSON.parse(datos)[0];
-    console.log(prod);
     /*cargamos la informacion*/
     document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo_categoria"]);
     document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre_categoria"]);

@@ -22,8 +22,8 @@ class CategoriaModelo extends Modelo{
 
     }
 
-    public function updateEditorial($producto=array()){
-        $query="UPDATE categorias SET nombre_categoria=:nombre_categoria";
+    public function updateCategoria($producto=array()){
+        $query="UPDATE categorias SET nombre_categoria=:nombre_categoria WHERE codigo_categoria=:codigo_categoria";
         return $this->setQuery($query,$producto);
 
     }

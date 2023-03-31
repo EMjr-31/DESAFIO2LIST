@@ -54,44 +54,16 @@ class CategoriaControlador extends Controlador{
         $this->render("edit.php",$viewBag);
     }
 
-    public function update($id){
-        if(isset($_POST['Guardar'])){
+    public function update(){
+        if(isset($_POST['btn'])){
             extract($_POST);
             $errores=array();
-            $editorial=array();
+            $categoria=array();
             $viewBag=array();
-            $editorial['codigo_editorial']=$id;
-            $editorial['nombre_editorial']=$nombre_editorial;
-            $editorial['contacto']=$contacto;
-            $editorial['telefono']=$telefono;
-
-            if(estaVacio($nombre_editorial)||!isset($nombre_editorial)){
-                array_push($errores,'Debes ingresar el nombre del editorial');
-            }
-            
-            if(estaVacio($contacto)||!isset($contacto)){
-                array_push($errores,'Debes ingresar el contacto'); 
-            }
-            
-            if(estaVacio($telefono)||!isset($telefono)){
-                array_push($errores,'Debes ingresar el número de telefono');
-            }
-            elseif(!esTelefono($telefono)){
-                array_push($errores,'El telefono no tiene el formato correcto');
-            }
-
-            if(count($errores)==0){
-                $this->model->updateEditorial($editorial);
-                header('location:'.PATH.'/Editoriales');
-
-            }
-            else{
-                $viewBag['errores']=$errores;
-                $viewBag['editorial']=$editorial;
-                $this->render("edit.php",$viewBag);
-            }
-
-
+            $categoria['codigo_categoria']=$codigo_categoria;
+            $categoria['nombre_categoria']=$nombre_categoria;
+            $this->model->updateCategoria($categoria);
+            header('location:'.PATH.'/Categoria');
             
         }
     }
