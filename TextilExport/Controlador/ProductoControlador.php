@@ -1,6 +1,7 @@
 <?php
 require_once 'Controlador.php';
 require_once './Modelo/ProductoModelo.php';
+require_once './Modelo/CategoriaModelo.php';
 class ProductoControlador extends Controlador{
 
     private $model;
@@ -13,6 +14,8 @@ class ProductoControlador extends Controlador{
         $viewBag=array();
         $productos=$this->model->get();
         $viewBag['productos']=$productos;
+        $cat=new CategoriaModelo();
+        $viewBag['categorias']=$cat->getCategoria();
         $this->render("index.php",$viewBag);
     }
 
@@ -92,6 +95,8 @@ class ProductoControlador extends Controlador{
     public function  admin(){
         $viewBag=array();
         $productos=$this->model->get();
+        $cat=new CategoriaModelo();
+        $viewBag['categorias']=$cat->getCategoria();
         $viewBag['productos']=$productos;
         $this->render("admin.php",$viewBag);
     }

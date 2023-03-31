@@ -63,10 +63,11 @@
                     <input type="text" name="nombre_producto" id="modal__input__nombre" class="label input" required>
                     <label for="modal__input__categoria" class="label">Categoria</label>
                     <select type="text" name="codigo_categoria" id="modal__input__categoria" class="label input" required>
-                        <option value="CAT0000001">Textil</option>
-                        <option value="CAT0000001">Promocional</option>
-                        <option value="CAT0000001">Tazas</option>
-                        <option value="CAT0000001">Embases</option>
+                                <?php
+                                    foreach($categorias as $cat){
+                                ?>
+                                    <option value="<?=$cat['codigo_categoria']?>"><?=$cat['nombre_categoria']?></option>
+                                    <?php } ?>  
                     </select>
                     <label for="modal__input__descripcion" class="label">Descripcion</label>
                     <input type="text" name="descripcion_producto" id="modal__input__descripcion" class="label input" required>
