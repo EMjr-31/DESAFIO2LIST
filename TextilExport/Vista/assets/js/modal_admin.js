@@ -75,7 +75,6 @@ function eliminar(elemento){
     });
     
     var codigo=((elemento.parentNode).parentNode).getAttribute("id");
-    document.getElementById('desc_modal_from').setAttribute("action","eliminar.php");
     $.post('/LIS/LABORATORIOS/DESAFIO2/TextilExport/Producto/buscar/'+codigo,
         function(datos, estado){
             console.log(datos);
@@ -103,6 +102,7 @@ function cargarProducto2(datos){
     console.log('LLEGAMOS');
     let prod=JSON.parse(datos)[0];
     /*cargamos la informacion*/
+    document.getElementById('desc_modal_from').setAttribute("action","/LIS/LABORATORIOS/DESAFIO2/TextilExport/Producto/delete/"+prod['img']);
     document.getElementById('modal__img').src="/LIS/LABORATORIOS/DESAFIO2/TextilExport/Vista/assets/img/"+prod['img'];
     document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo_producto"]);
     document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre_producto"]);

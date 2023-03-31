@@ -67,7 +67,10 @@ class ProductoControlador extends Controlador{
     }
 
     public function delete($id){
-        $this->model->removeProducto($id);
+        $cod= explode('.',$id)[0];
+        unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/Vista/assets/img/'.$id);
+        $this->model->removeProducto($cod);
+        $this->render("admin.php",$viewBag);
     }
 
 
