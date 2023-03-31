@@ -14,9 +14,11 @@ class ProductoModelo extends Modelo{
         
     }
 
-    public function insertEditorial($producto=array()){
+    public function insertProducto($producto=array()){
+        echo var_dump($producto);
         $query="INSERT INTO producto VALUES (:codigo_producto,:nombre_producto,:codigo_categoria,:precio_producto,:existencia_producto,:descripcion_producto,:img)";
-        return $this->setQuery($query,$producto);
+         echo $this->setQuery($query,$producto);
+        
 
     }
 

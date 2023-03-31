@@ -34,7 +34,7 @@ function agregar(){
         label.classList.remove("articulos__filtro");
     });
     imgDefecto();
-    document.getElementById('desc_modal_from').setAttribute("action","agregar.php");
+    document.getElementById('desc_modal_from').setAttribute("action","/LIS/LABORATORIOS/DESAFIO2/TextilExport/Producto/add");
     document.getElementById('btn__guardar').setAttribute("value","Guardar");
     document.getElementById('btn__subir').classList.remove("articulos__filtro");
     document.getElementById('modal__input__codigo').removeAttribute("readonly");
