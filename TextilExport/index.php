@@ -2,6 +2,7 @@
 session_start();
 include_once 'Controlador/ProductoControlador.php';
 include_once 'Controlador/CarritoControlador.php';
+include_once 'Controlador/CategoriaControlador.php';
 include_once 'Core/config.php';
 $url=$_SERVER['REQUEST_URI'];
 $url=explode("/",$url);
