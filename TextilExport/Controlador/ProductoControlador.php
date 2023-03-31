@@ -31,8 +31,9 @@ class ProductoControlador extends Controlador{
                     $archivo=$_FILES['file'];
                     $archivo_nombre=$archivo['name'];
                     $archivo_tipo=$archivo['type'];
+                    echo var_dump($archivo);
                     $ext= explode('.',$archivo_nombre);
-                    $tipos=array("image/jpg","image/png");
+                    $tipos=array("image/jpeg","image/png","image/jpg");
                     if(!in_array($archivo_tipo,$tipos)){
                         echo "No se permite ese formato de imagen o La imagen del producto no se subio";
                     }else{
@@ -70,7 +71,6 @@ class ProductoControlador extends Controlador{
         $cod= explode('.',$id)[0];
         unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/Vista/assets/img/'.$id);
         $this->model->removeProducto($cod);
-        $this->render("admin.php",$viewBag);
     }
 
 
